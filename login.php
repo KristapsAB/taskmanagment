@@ -1,5 +1,5 @@
 <?php
-session_start(); // start the session
+session_start(); // Start the session
 
 class User {
     private $conn;
@@ -18,14 +18,21 @@ class User {
             return "Username or password cannot be empty";
         }
 
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-        $stmt->bind_param("ss", $this->username, $this->password);
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $this->username);
 
         $stmt->execute();
 
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            return true;
+            $user = $result->fetch_assoc();
+
+            // Verify the password using password_verify
+            if (password_verify($this->password, $user['password'])) {
+                return true;
+            } else {
+                return "Invalid username or password";
+            }
         } else {
             return "Invalid username or password";
         }
@@ -45,10 +52,11 @@ if ($conn->connect_error) {
 
 $user = new User($conn, $_POST['username'], $_POST['password']);
 $login = $user->login();
+
 if ($login === true) {
-    $_SESSION['username'] = $_POST['username']; // store the username in the session
+    $_SESSION['username'] = $_POST['username']; // Store the username in the session
     echo "Login successful";
 } else {
-    echo $login; // echo the error message
+    echo $login; // Echo the error message
 }
 ?>

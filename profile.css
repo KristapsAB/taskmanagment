@@ -1,0 +1,152 @@
+* {
+    padding:0;
+    margin:0;
+}
+.profile{
+    width: 100%;
+    height:100vh;
+    background-color: #2B2E4A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-center{
+    background-color:#903749;
+    width:90%;
+    height:90vh;
+    display:flex;
+    justify-content: left;
+    border-radius:10px;
+}
+.profile-right{
+    background-color:#53354A ;
+    display:flex;
+    width:35%;
+    height:90vh;
+    border-radius:10px;
+    flex-direction: column;
+}
+.profile-image{
+    width:100%;
+    height:25vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#53354A;
+    border-radius:10px;
+}
+.avatar {
+    vertical-align: middle;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+.name{
+    width:100%;
+    border-radius:10px;
+    background-color:#53354A;
+    display:flex;
+    justify-content: center;
+    height:10vh;
+}
+h1{
+    color:#FFA500;
+    font-family: 'Roboto', sans-serif;
+}
+.side-options{
+    width:100%;
+    height:50vh;
+    display:flex;
+    justify-content: center;
+    background-color:#53354A;
+    flex-wrap:wrap;
+    text-align: center;
+
+}
+p{
+    color:#FFFFFF;
+    font-weight:medium;
+    text-align: center;
+    display:block;
+    font-size:25px;
+}
+.text{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    height:5vh;
+
+}
+.profile-left{
+    width:65%;
+    background-color:#903749;
+    display:flex;
+    border-radius:10px;
+    justify-content: center;
+}
+.profile-info{
+    width: 80%;
+    height:50vh;
+    display:flex;
+    flex-direction: column;
+}
+.info1{
+    width:100%;
+    text-align: left;
+    display:flex;
+    justify-content: center;
+}
+.info2{
+    width:80%;
+    text-align: left;
+    display:flex;
+    justify-content: left;
+    margin-right:20px;
+    margin-top:10px;
+}
+input{
+    width:70%;
+    height:5vh;
+    margin-top:10px;
+    border-radius:3.5px;
+    border:none;
+}
+label{
+    margin-left:100px;
+    color:#FFFFFF;
+    font-weight:bold;
+}
+.ProfileMain{
+    width: 100%;
+    height:20vh;
+    display:flex;
+    justify-content: center;
+}
+h2{
+    color:#FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size:40px;
+}
+.button{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    margin-top:25px;
+}
+button{
+    width:50%;
+    background-color:#2B2E4A;
+    color:#FFFFFF;
+    height:5vh;
+    border-radius:5px;
+}
+.logout-button{
+    width:70%;
+    background-color:#2B2E4A;
+    color:#FFFFFF;
+    height:5vh;
+    border-radius:5px;
+}
+#username {
+    background-color: #f3f3f3;
+}
