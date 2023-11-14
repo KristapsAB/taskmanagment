@@ -58,10 +58,10 @@
                         foreach ($tasksByDate[$day] as $task) {
                             echo '<div class="taskBox">';
                             echo "<div class=\"taskHeading\">{$task['name']}</div>";
-                            echo '<div class="taskBotBox-left">';
+                            echo '<div class="taskBotBox-left-cal">';
                             echo "<div class=\"textBox\">{$task['description']}</div>";
                             echo '</div>';
-                            echo '<div class="taskBotBox-right">';
+                            echo '<div class="taskBotBox-right-cal">';
                             echo "<div class=\"textBox2\">{$task['due_date']}</div>";
                             // Add more task details if needed
                             echo '</div>';

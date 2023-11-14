@@ -36,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="innerBoxED">
                 <form class="innerFormED" method="post" name="Mform" onsubmit="return submitForm()">
                     <div class="formBoxED">
-                        <div class="formHeadingED">PROJECT NAME</div>
+                        <div class="formHeadingED">TASK NAME</div>
                         <input name="fname" type="text" class="nameInputED">
                     </div>
                     <div class="formBoxED">
-                        <div class="formHeadingED">PROJECT DESCRIPTION</div>
+                        <div class="formHeadingED">TASK DESCRIPTION</div>
                         <input name="fdesc" type="text" class="nameInputED">
                     </div>
                     <div class="formBoxED">

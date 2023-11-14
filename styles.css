@@ -458,11 +458,9 @@ margin-bottom: 25px;
     display: flex;
     flex-wrap: wrap;
     border-right: 3px solid #FFF;
-    border-bottom: 3px solid #fff;
-    
-
 
 }
+
 .textBox{
     width: 100%;
     height: 60%;
@@ -474,14 +472,30 @@ margin-bottom: 25px;
 }
 .taskBotBox-right{
     width: 39%;
-    height: 55%;
+    height: 60%;
     display: flex;
     flex-wrap: wrap;
     display: flex;
     flex-wrap: wrap;
     border: none;
-    border-bottom: 3px solid #fff;
-    
+}
+.taskBotBox-right-cal{
+    width: 39%;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+}
+.taskBotBox-left-cal{
+    width: 59%;
+    height: 55%;
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+ 
 }
 .textBox2{
     width: 100%;
@@ -521,7 +535,7 @@ margin-bottom: 25px;
 }
 .botButton{
     width: 320px;
-height: 55px;
+height: 50px;
     border-radius: 10px;
 border: 4px solid #FFF;
 background: #762C3B;
@@ -532,6 +546,7 @@ color: white;
     text-align: center;
     line-height: 50px;
     font-size: 30px;
+    margin: 0px auto;
     cursor: pointer;
 }
 
