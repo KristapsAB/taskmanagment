@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 <body>
     <div class="container">
-        <div class="box">
+        <div class="boxCR">
             <div class="boxHeadingCR">CREATE A PROJECT</div>
             <div class="innerBoxCR">
                 <form name="Mform" class="innerForm" method="post" onsubmit="return validateForm()">

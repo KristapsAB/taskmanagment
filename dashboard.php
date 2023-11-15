@@ -24,8 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["task_id"]) && isset($_
 <body>
     <div class="container">
         <div class="box-dash">
-            <!-- Move boxHeading-dash outside the loop -->
-            <div class="boxHeading-dash"><?php echo isset($tasks[0]['name']) ? $tasks[0]['name'] : ''; ?></div>
+            <div class="boxHeading-dash">PROJECT NAME</div>
             <div class="innerBox-dash">
                 <!-- Assuming there are three sections: TO DO, IN PROGRESS, and DONE -->
                 <?php foreach (['TO DO', 'IN PROGRESS', 'DONE'] as $status): ?>
@@ -41,13 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["task_id"]) && isset($_
                             // Display tasks for the current status
                             foreach ($tasksByStatus as $taskByStatus):
                             ?>
-<div class="taskBox" id="task_<?php echo htmlspecialchars($taskByStatus['name']); ?>">
+<div class="taskBox-dash" id="task_<?php echo htmlspecialchars($taskByStatus['name']); ?>">
                                     <div class="taskHeading"><?php echo $taskByStatus['name']; ?></div>
                                     <div class="taskBotBox-left">
                                         <div class="textBox"><?php echo $taskByStatus['description']; ?></div>
                                     </div>
                                     <div class="taskBotBox-right">
-                                        <div class="textBox2"><?php echo $taskByStatus['due_date']; ?></div>
+                                        <div class="textBox2">DUE: <br> <?php echo $taskByStatus['due_date']; ?></div>
                                     </div>
                                     <div class="taskButtonBox">
                                     <?php
@@ -69,9 +68,9 @@ switch ($status) {
         case 'DONE':
             $taskId = isset($taskByStatus['task_id']) ? $taskByStatus['task_id'] : '';
             ?>
-            <button class="markAsDoneButton" >FINISHED</button>
+            <!-- Change the button text to "DELETE" -->
+            <button class="markAsDoneButton" onclick="deleteTask('<?php echo $taskId; ?>')">DELETE</button>
             <?php
-            // Display buttons related to completed tasks
             break;
 }
 ?>
@@ -84,8 +83,9 @@ switch ($status) {
                 <?php endforeach; ?>
             </div>
         </div>
-
+<div class="botButtonBox">
         <button onclick="location.href='createTask.php'" class="botButton">CREATE</button>
+        </div>
     </div>
 
     <script>
@@ -120,6 +120,28 @@ function markAsDone(taskId) {
     const formData = new FormData();
     formData.append('task_id', taskIdString);
     formData.append('new_status', 'DONE');
+
+    fetch('updateTaskStatus.php', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        // Refresh the page after updating the task status
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function deleteTask(taskId) {
+    const taskIdString = taskId.toString();
+
+    const formData = new FormData();
+    formData.append('task_id', taskIdString);
+    formData.append('new_status', 'DELETED'); // Use a new status like 'DELETED' to represent deleted tasks
 
     fetch('updateTaskStatus.php', {
         method: 'POST',
