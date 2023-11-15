@@ -55,13 +55,10 @@ class TaskManager extends DatabaseManager
         if (!$stmt) {
             throw new Exception("Error preparing statement: " . $this->conn->errorInfo()[2]);
         }
-
         $stmt->bind_param("s", $month);
-
         if (!$stmt->execute()) {
             throw new Exception("Error executing statement: " . $stmt->errorInfo()[2]);
         }
-
         $result = $stmt->get_result();
         $tasks = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -72,16 +69,14 @@ class TaskManager extends DatabaseManager
 
     public function getTasksByDay($month, $day)
     {
-        // Convert month to number
         $monthNumber = date('m', strtotime($month));
     
         $query = "SELECT * FROM tasks WHERE MONTH(due_date) = ? AND DAY(due_date) = ?";
         $stmt = $this->conn->prepare($query);
-    
         if (!$stmt) {
             throw new Exception("Error preparing statement: " . $this->conn->errorInfo()[2]);
         }
-    
+
         $stmt->bind_param("ii", $monthNumber, $day);
     
         if (!$stmt->execute()) {
@@ -92,7 +87,6 @@ class TaskManager extends DatabaseManager
         $tasks = $result->fetch_all(MYSQLI_ASSOC);
     
         $stmt->close();
-    
         return $tasks;
     }
 

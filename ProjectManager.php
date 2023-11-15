@@ -19,14 +19,12 @@ class ProjectManager extends DatabaseManager{
         $result = $this->conn->query("SELECT project_name FROM projects");
 
         if ($result === false) {
-            return []; // Return an empty array or handle the error as needed
+            return []; 
         }
-
         $projects = [];
         while ($row = $result->fetch_assoc()) {
             $projects[] = $row;
         }
-
         return $projects;
     }
 

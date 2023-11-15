@@ -13,7 +13,7 @@
             <form id="monthForm">
                 <select class="select" id="selectedMonth" onchange="changeMonth()">
                     <?php
-                    // Loop through months
+                    // loops cauri visiem menesiem
                     $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                     foreach ($months as $month) {
                         echo "<option value=\"$month\">$month</option>";
@@ -25,35 +25,29 @@
                 <?php
                 require_once('TaskManager.php');
 
-                // Function to convert month name to number
+                // lai parverstu menesi uz number
                 function monthToNumber($month) {
                     global $months;
                     return array_search($month, $months) + 1;
                 }
 
                 $taskManager = new TaskManager();
-
-                // Check if a specific month is selected, default to the current month
-                $selectedMonth = isset($_GET['selectedMonth']) ? $_GET['selectedMonth'] : date('F');
-
-                // Fetch tasks for the current month
+                $selectedMonth = isset($_GET['selectedMonth']) ? $_GET['selectedMonth'] : date('F');//nestrada (kinda)
+                // lai dabutu uzdevumus menesim
                 $tasks = $taskManager->getTasksByMonth($selectedMonth);
-
-                // Get the number of days in the selected month (you may need to adjust the year dynamically)
+                // lai dabutu dienu skaitu menesi
                 $daysInMonth = cal_days_in_month(CAL_GREGORIAN, monthToNumber($selectedMonth), date('Y'));
-
-                // Loop through days in the month
+                // Loop cauri dienam
                 for ($day = 1; $day <= $daysInMonth; $day++) {
                     echo '<div class="innerBar-dash">';
                     echo "<div class=\"innerHeading-dash\">$day</div>";
-
-                    // Fetch tasks for the current day
+                    // lai dabutu dienas uzdevumus
                     $tasksByDay = array_filter($tasks, function ($task) use ($day) {
                         return date('j', strtotime($task['due_date'])) == $day;
                     });
 
                     echo '<div class="taskBar">';
-                    // Check if there are tasks for the current day
+                    // parbaude vai diena ir uzdevumi
                     if (!empty($tasksByDay)) {
                         foreach ($tasksByDay as $task) {
                             echo '<div class="taskBox">';
@@ -68,7 +62,6 @@
                             echo '</div>';
                         }
                     } else {
-                        // Display a message if no tasks are found
                         echo '<div class="emptyText">NO TASKS FOUND</div>';
                     }
                     echo '</div>';
@@ -80,12 +73,12 @@
         </div>
     </div>
 
-    <!-- Add this script in the <head> section of your HTML -->
+  
     <script>
         function changeMonth() {
             const selectedMonth = document.getElementById("selectedMonth").value;
 
-            // Fetch tasks for the selected month
+            // lai dabutu uzdevumus atlasitajam menesim
             fetch(`updateMonth.php?selectedMonth=${selectedMonth}`)
                 .then(response => response.text())
                 .then(data => {

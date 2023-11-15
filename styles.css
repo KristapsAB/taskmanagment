@@ -738,4 +738,9 @@ line-height: 50px;
         height: 80%;
         width: 30%;
     }
+    .box-cal{
+        height: 80%;
+        margin-top: 0;
+        margin: 100px auto;
+    }
   }
