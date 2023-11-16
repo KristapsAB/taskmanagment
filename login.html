@@ -34,21 +34,31 @@
         </div>
     </div>
     <script>
-        $(document).ready(function(){
-            $("#login-form").submit(function(e){
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "login.php",
-                    data: $(this).serialize(),
-                    success: function(response)
-                    {
-                        alert(response);
-                    }
-                });
-            });
+      $(document).ready(function(){
+    $("#login-form").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "login.php",
+            data: $(this).serialize(),
+            dataType: 'json', // Expect JSON response
+            success: function(response) {
+                console.log(response); // Log the entire response
+
+                if (response.success) {
+                    // Redirect to the specified URL
+                    window.location.href = response.redirect;
+                } else {
+                    // Handle failure (e.g., show an error message)
+                    console.log(response.message);
+                    alert(response.message);
+                }
+            }
         });
-        </script>
-        
+    });
+});
+
+
+    </script>
 </body>
 </html>

@@ -13,7 +13,6 @@ class User {
         $this->password = $password;
     }
 
-    // Function to start the session (add this to any file where you use sessions)
     private function startSession() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -64,7 +63,6 @@ class User {
         }
     }
 
-    // Method to retrieve user information
     public function getUserInfo() {
         $this->startSession();
 
@@ -77,7 +75,7 @@ class User {
         if ($result->num_rows > 0) {
             return $result->fetch_assoc();
         } else {
-            return null; // User not found
+            return null; 
         }
     }
     public function getName() {
@@ -149,30 +147,32 @@ class User {
             return null;
         }
     }
-    // Inside the User class
 
 public function getAvatarUrl() {
-    return $this->avatar_url;
+    $stmt = $this->conn->prepare("SELECT avatar_url FROM users WHERE username = ?");
+    $stmt->bind_param("s", $this->username);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        return $user['avatar_url'];
+    } else {
+        return null;
+    }
 }
 
-public function updateAvatar($avatarUrl) {
-    // You may want to add validation for the URL
-    $this->avatar_url = $avatarUrl;
-
-    // Update the avatar URL in the database
+public function updateAvatar($avatar_url) {
     $stmt = $this->conn->prepare("UPDATE users SET avatar_url = ? WHERE username = ?");
-    $stmt->bind_param("ss", $avatarUrl, $this->username);
+    $stmt->bind_param("ss", $avatar_url, $this->username);
 
     if ($stmt->execute()) {
         return true;
     } else {
-        return $stmt->error;
+        return "Error updating avatar: " . $stmt->error;
     }
 }
-
-    
-    
-    
 
     public function register() {
         if (empty($this->username) || empty($this->email) || empty($this->password)) {
@@ -192,6 +192,11 @@ public function updateAvatar($avatarUrl) {
         if ($result->num_rows > 0) {
             return "Username or email already exists";
         } else {
+            // Check if passwords match
+            if ($_POST['password'] !== $_POST['confirm_password']) {
+                return "Passwords do not match";
+            }
+
             $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
             $stmt = $this->conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $this->username, $this->email, $hashed_password);
@@ -203,6 +208,7 @@ public function updateAvatar($avatarUrl) {
             }
         }
     }
+    
 
     private function validateInput($input) {
         return $input;
