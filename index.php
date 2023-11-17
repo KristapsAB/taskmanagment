@@ -22,7 +22,6 @@ $projects = $projectManager->getAllProjects();
             <div class="boxHeading">WELCOME BACK, LOHS</div>
             <div class="innerBox">
                 <?php
-                // Loop through each project and display it
                 foreach ($projects as $project) {
                     echo '<div class="innerBar" onclick="redirectToDashboard()"> ' . htmlspecialchars($project['project_name']) . ' </div>';
                 }

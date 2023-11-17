@@ -7,7 +7,7 @@ class DatabaseManager {
     private $database = "task_management";
     public $conn;
 
-    // Constructor to establish a database connection
+
     public function __construct() {
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
 

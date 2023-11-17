@@ -2,16 +2,13 @@
 require_once('TaskManager.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Additional PHP code to handle form submission
     $taskManager = new TaskManager();
 
-    // Retrieve form data
     $name = $_POST["fname"];
     $description = $_POST["fdesc"];
     $dueDate = $_POST["fdate"];
     $comments = $_POST["fcomment"];
 
-    // Insert data into the "tasks" table
     $result = $taskManager->createTask($name, $description, $dueDate, $comments);
 
     echo $result;
@@ -27,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-    /* Your styles go here */
 </style>
 <body>
     <div class="containerED">
@@ -58,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="buttonBotED" onclick="submitForm()">CREATE</button>
         </div>
         
-        <!-- Add a status message element -->
         <div id="statusMessage"></div>
     </div>
 </body>
@@ -79,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert("The DATE input field must be filled out");
             return false;
         }
-        return true; // Add this line to indicate validation success
+        return true;
     }
 
     function submitForm() {
@@ -93,17 +88,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             })
             .then(response => response.text())
             .then(data => {
-                // Update a status message on the page
                 document.getElementById("statusMessage").innerHTML = data;
-
-                // Reset the form
                 form.reset();
             })
             .catch(error => {
                 console.error("Error:", error);
             });
         }
-        return false; // Prevent form submission
+        return false; 
     }
 </script>
 </html>

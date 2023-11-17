@@ -9,7 +9,6 @@ $daysInMonth = cal_days_in_month(CAL_GREGORIAN, array_search($selectedMonth, $mo
 
 $htmlContent = '';
 
-// Create an instance of the TaskManager class
 $taskManager = new TaskManager();
 
 for ($day = 1; $day <= $daysInMonth; $day++) {
@@ -17,7 +16,6 @@ for ($day = 1; $day <= $daysInMonth; $day++) {
     $htmlContent .= "<div class=\"innerHeading-dash\">$day</div>";
     $htmlContent .= '<div class="taskBar">';
     
-    // Fetch tasks for the current day
     $tasks = $taskManager->getTasksByDay($selectedMonth, $day);
 
     if (!empty($tasks)) {

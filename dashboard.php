@@ -4,12 +4,11 @@ require_once('TaskManager.php');
 $taskManager = new TaskManager();
 $tasks = $taskManager->getAllTasks();
 
-// Check if the form is submitted to update the task status
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["task_id"]) && isset($_POST["new_status"])) {
     $task_id = $_POST["task_id"];
     $new_status = $_POST["new_status"];
     $taskManager->updateTaskStatus($task_id, $new_status);
-    exit; // Avoid rendering the entire page when handling the update request
+    exit;
 }
 ?>
 
@@ -26,18 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["task_id"]) && isset($_
         <div class="box-dash">
             <div class="boxHeading-dash">PROJECT NAME</div>
             <div class="innerBox-dash">
-                <!-- Assuming there are three sections: TO DO, IN PROGRESS, and DONE -->
                 <?php foreach (['TO DO', 'IN PROGRESS', 'DONE'] as $status): ?>
                     <div class="innerBar-dash">
                         <div class="innerHeading-dash"><?php echo $status; ?></div>
                         <div class="taskBar">
                             <?php
-                            // Filter tasks based on their status
                             $tasksByStatus = array_filter($tasks, function ($t) use ($status) {
                                 return (isset($t['status']) && $t['status'] === $status) || !isset($t['status']);
                             });
-
-                            // Display tasks for the current status
                             foreach ($tasksByStatus as $taskByStatus):
                             ?>
 <div class="taskBox-dash" id="task_<?php echo htmlspecialchars($taskByStatus['name']); ?>">
@@ -60,15 +55,12 @@ switch ($status) {
     case 'IN PROGRESS':
         $taskId = isset($taskByStatus['task_id']) ? $taskByStatus['task_id'] : '';
         ?>
-        <!-- Add the "MARK AS DONE" button for tasks in progress -->
         <button class="markAsDoneButton" onclick="markAsDone('<?php echo $taskId; ?>')">MARK AS DONE</button>
         <?php
-        // You can add more buttons or custom content for tasks in progress if needed
         break;
         case 'DONE':
             $taskId = isset($taskByStatus['task_id']) ? $taskByStatus['task_id'] : '';
             ?>
-            <!-- Change the button text to "DELETE" -->
             <button class="markAsDoneButton" onclick="deleteTask('<?php echo $taskId; ?>')">DELETE</button>
             <?php
             break;
@@ -96,7 +88,6 @@ function beginTask(taskId) {
     formData.append('task_id', taskIdString);
     formData.append('new_status', 'IN PROGRESS');
 
-    // Print the task ID to the console
     console.log('Task ID:', taskIdString);
 
     fetch('updateTaskStatus.php', {
@@ -106,7 +97,6 @@ function beginTask(taskId) {
     .then(response => response.text())
     .then(data => {
         console.log(data);
-        // Refresh the page after updating the task status
         location.reload();
     })
     .catch(error => {
@@ -128,7 +118,6 @@ function markAsDone(taskId) {
     .then(response => response.text())
     .then(data => {
         console.log(data);
-        // Refresh the page after updating the task status
         location.reload();
     })
     .catch(error => {
@@ -141,7 +130,7 @@ function deleteTask(taskId) {
 
     const formData = new FormData();
     formData.append('task_id', taskIdString);
-    formData.append('new_status', 'DELETED'); // Use a new status like 'DELETED' to represent deleted tasks
+    formData.append('new_status', 'DELETED');
 
     fetch('updateTaskStatus.php', {
         method: 'POST',
@@ -150,7 +139,6 @@ function deleteTask(taskId) {
     .then(response => response.text())
     .then(data => {
         console.log(data);
-        // Refresh the page after updating the task status
         location.reload();
     })
     .catch(error => {
