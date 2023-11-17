@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Side Bar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fa fa-bars" id="btn"></i>
+      <i class="fa fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+    <header>Sveiki</header>
+    <ul>
+        <li><a href="#" onclick="ieladetSaturu('index.php')"><i class="fa fa-home"></i>HOME</a></li>
+        <li><a href="#" onclick="ieladetSaturu('createProject.php')"><i class="fa fa-folder"></i>CREATE A PROJECT</a></li>
+        <li><a href="#" onclick="ieladetSaturu('dashboard.php')"><i class="fa fa-dashboard"></i>DASHBOARD</a></li>
+        <li><a href="#" onclick="ieladetSaturu('calendar.php')"><i class="fa fa-calendar"></i>CALENDAR</a></li>
+        <li><a href="#"><i class="fa fa-unlock"></i>Log Out</a></li>
+    </ul>
+   </div>
+   <section id="content"></section>
+   <script src="script.js"></script>
+  </body>
+</html>

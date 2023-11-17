@@ -17,6 +17,10 @@ $projects = $projectManager->getAllProjects();
     
 </style>
 <body>
+<?php
+include('menu.html');
+
+?>
     <div class="container">
         <div class="box">
             <div class="boxHeading">WELCOME BACK, LOHS</div>
