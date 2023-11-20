@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toggle Sidebar</title>
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    
+      #sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        background-color: #111;
+        padding-top: 60px;
+        transition: 0.5s;
+      }
+    
+      #sidebar a {
+        padding: 8px 15px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+    
+      #sidebar a:hover {
+        color: #f1f1f1;
+      }
+    
+      #main {
+        transition: margin-left 0.5s;
+        padding: 16px;
+      }
+    
+      #toggle-btn {
+        font-size: 30px;
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        cursor: pointer;
+        z-index: 2;
+      }
+</style>
+<body>
+
+<div id="sidebar">
+  <a href="#">Profile</a>
+  <a href="#">Create Task</a>
+  <a href="#">Task list</a>
+  <a href="#">Calendar</a>
+  <a href="#">Task list</a>
+  <a href="#">Logout</a>
+</div>
+
+<div id="main">
+  <div id="toggle-btn" onclick="toggleSidebar()">&#9776;</div>
+  <p></p>
+</div>
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main');
+    const toggleBtn = document.getElementById('toggle-btn');
+
+    if (sidebar.style.left === '-250px') {
+      sidebar.style.left = '0';
+      main.style.marginLeft = '250px';
+      toggleBtn.innerHTML = '&#10005;';
+    } else {
+      sidebar.style.left = '-250px';
+      main.style.marginLeft = '0';
+      toggleBtn.innerHTML = '&#9776;';
+    }
+  }
+</script>
+
+</body>
+</html>
