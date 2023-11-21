@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         include('Login.php');
 
-        $login = new Login("localhost", "root", "root", "taskManager");
+        $login = new Login("localhost", "root", "root", "task_management");
         $form_username = $_POST['username'];
         $form_password = $_POST['password'];
 

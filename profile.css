@@ -126,6 +126,7 @@ h2{
     color:#FFFFFF;
     font-family: 'Roboto', sans-serif;
     font-size:40px;
+    text-align:center;
 }
 .button{
     width:100%;
@@ -150,3 +151,204 @@ button{
 #username {
     background-color: #f3f3f3;
 }
+.upload-form{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+}
+.upload-form1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.upload-form1 label,
+.upload-form1 input,
+.upload-form1 button {
+    margin: 5px;
+}
+.button69{
+    background-color:transparent;
+}
+/* Add this to your existing CSS file or in a <style> tag in your HTML */
+#tasksSection {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+#allTasksList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#allTasksList ul {
+    padding: 0;
+}
+
+#allTasksList li {
+    margin-bottom: 10px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#allTasksList li:hover {
+    background-color: #e0e0e0;
+}
+
+#allTasksList li span {
+    margin-right: 10px;
+}
+/* Add these styles to your existing CSS or in a separate stylesheet */
+/* Add these styles to your existing CSS or in a separate stylesheet */
+/* Update these colors based on your preferences */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #53354A; /* Change border color to match your design */
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th {
+    background-color: #903749; /* Change background color to match your design */
+    color: #fff;
+    font-weight: bold;
+}
+
+td {
+    background-color: #53354A; /* Change background color to match your design */
+    color: #fff;
+}
+
+#allTasksList li {
+    margin-bottom: 10px;
+    background-color: #53354A; /* Change background color to match your design */
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+#allTasksList li:hover {
+    background-color: #903749; /* Change hover background color to match your design */
+}
+
+/* Styling for the "Status" column */
+#allTasksList li .status {
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#tasksSection {
+    margin-top: 20px;
+    overflow-x: auto; /* Add horizontal scrolling if the table overflows */
+}
+
+
+
+@media only screen and (max-width: 320px) {
+    .profile-center,
+    .profile-right,
+    .profile-left {
+        width: 100%;
+        flex-direction: column; /* Stack elements vertically */
+        align-items:center;
+        justify-content:center;
+        text-align: center;
+        border-radius:0px;
+        height:100vh;
+    }
+    
+    .profile-left {
+        width: 100%; /* Make profile-left fill the screen */
+        height: auto; /* Changed from 100vh to auto */
+    }
+    
+    .profile-image {
+        height: auto; /* Changed from 25vh to auto */
+    }
+    
+    .profile-info {
+        height: auto; /* Changed from 50vh to auto */
+    }
+    
+    .info2 {
+        width: 100%;
+        text-align: center;
+        margin-left:-60px;
+    }
+
+    .upload-form1 label,
+    .upload-form1 input,
+    .upload-form1 button {
+        width: 100%;
+    }
+
+    .button,
+    .button69 {
+        width: 100%;
+    }
+    .side-options{
+        height: auto; /* Changed from 60vh to auto */
+    }
+    label{
+        text-align:center;
+    }
+    h1{
+        font-size:20px;
+    }
+    p{
+        font-size:15;
+    }
+    .profile{
+        align-items: flex-start; /* Changed from top to flex-start */
+    }
+    .name{
+        margin-top:10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow-x: auto;
+    }
+
+    th, td {
+        padding: 3px;
+        text-align: left;
+        border: 1px solid white;
+        max-width: 60px; /* Limit the maximum width of cells */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    th {
+        font-size: 10px;
+    }
+
+    td {
+        font-size: 12px;
+    }
+
+    #allTasksList li {
+        font-size: 10px;
+    }
+}
+
